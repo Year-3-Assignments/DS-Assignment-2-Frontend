@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from '../../firebase.config';
 import Progress from '../../components/Progress';
+import { NotificationManager } from 'react-notifications';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { createUserAccount } from '../../actions/userActions';
@@ -78,9 +79,7 @@ class SignUp extends React.Component {
 
   uploadImage =(e) => {
     e.preventDefault();
-    console.log('Upload button clicked')
     if (this.state.profileImage !== null) {
-      console.log('inside if')
       let folderName = 'Profile-Pictures';
       let file = this.state.profileImage;
       let upload = firebase.storage().ref(`${folderName}/${this.state.userName}`).put(file);
@@ -100,6 +99,7 @@ class SignUp extends React.Component {
   }
 
   onSubmit = (e) => {
+    NotificationManager.warning('Issue with input fields', 'Please check the input fields');
     e.preventDefault();
     if (this.validateForm()) {
       let data = Object.values(formData).map(key => {
@@ -123,8 +123,11 @@ class SignUp extends React.Component {
 
         console.log('DATA TO SEND', userData);
         this.props.createUserAccount(userData);
+        NotificationManager.success('User account successfully created', 'Success')
       } else {
-        this.setState({ formNotValid: true });
+        this.setState({ formNotValid: true }, () => {
+          NotificationManager.warning('Issue with input fields', 'Please check the input fields');
+        });
       }
     }
   }
