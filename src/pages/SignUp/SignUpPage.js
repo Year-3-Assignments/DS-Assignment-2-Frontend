@@ -10,9 +10,7 @@ export default class SignUp extends React.Component {
   render() {
     return (
       <div className="body mt-4">
-        <div className="d-flex justify-content-center">
-          <SignUpForm />   
-        </div>
+        <SignUpForm />   
       </div>
     )
   }

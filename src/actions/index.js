@@ -1,1 +1,5 @@
-// All the action types should be declared in here
+// User account management types
+export const CREATE_USER_ACCOUNT = "CREATE_USER_ACCOUNT";
+export const GET_USER_ACCOUNT = "GET_USER_ACCOUNT";
+export const UPDATE_USER_ACCOUNT = "UPDATE_USER_ACCOUNT";
+export const DELETE_USER_ACCOUNT = "DELETE_USER_ACCOUNT";
