@@ -21,7 +21,8 @@ const initialState = {
   profileImage: null,
   imageUrl: '',
   uploadPercentage: 0,
-  formNotValid: false
+  formNotValid: false,
+  authenticationData: ''
 }
 
 let formData = {};
@@ -37,6 +38,17 @@ class SignUp extends React.Component {
   }
 
   state = initialState;
+
+  componentWillReceiveProps = (nextProps) => {
+    if (this.props.setUser !== nextProps.setUser) {
+      this.setState({ authenticationData: nextProps.setUser }, () => {
+        localStorage.setItem('id', this.state.authenticationData.id);
+        localStorage.setItem('username', this.state.authenticationData.username);
+        localStorage.setItem('roles', this.state.authenticationData.roles);
+        localStorage.setItem('Authorization', `${this.state.authenticationData.tokenType} ${this.state.authenticationData.accessToken}`);
+      });
+    }
+  }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
