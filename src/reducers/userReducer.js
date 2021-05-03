@@ -30,6 +30,15 @@ function userReducer(state = initialState, action) {
       setUser = action.payload.data;
       return { ...state, loading: false, setUser };
     
+    case `${GET_USER_ACCOUNT}_FULFILLED`:
+        getUser = action.payload.data;
+        return { ...state, loading: false, getUser };
+
+    case `${GET_USER_ACCOUNT}_REJECTED`:
+      return { ...state, loading: false, setUserError: action.payload.data, state: initialState };
+    case `${GET_USER_ACCOUNT}_REJECTED`:
+      return { ...state, loading: false, getUserError: action.payload.data, state: initialState };
+
     default: 
       return state;
   }

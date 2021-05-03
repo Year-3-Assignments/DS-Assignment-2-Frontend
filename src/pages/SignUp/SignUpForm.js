@@ -117,7 +117,7 @@ class SignUp extends React.Component {
           address_2: this.state.address_2,
           city: this.state.city,
           password: this.state.password_1,
-          profileImage: this.state.imageUrl,
+          imageUrl: this.state.imageUrl,
           role: this.state.roles
         };
 

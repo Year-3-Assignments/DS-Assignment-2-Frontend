@@ -7,3 +7,14 @@ export function createUserAccount(user) {
     payload: axios.post('http://localhost:8089/api/auth/signup', user)
   };
 }
+
+export function getUserAccount() {
+  return {
+    type: GET_USER_ACCOUNT,
+    payload: axios.get(`http://localhost:8089/api/user/${localStorage.getItem("id")}`, {
+      headers: {
+        "Authorization": localStorage.getItem("Authorization")
+      }
+    })
+  };
+}
