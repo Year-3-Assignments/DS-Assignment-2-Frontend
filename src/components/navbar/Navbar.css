@@ -1,0 +1,15 @@
+.profile{
+    float: right;
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    size: 20%;
+}
+
+.shopping-nav {
+    height: 57px;
+}
+
+.dropdown-item {
+    font-size: 14px;
+}
