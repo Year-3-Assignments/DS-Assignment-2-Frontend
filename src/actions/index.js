@@ -10,3 +10,11 @@ export const GET_SELLER_SHOPS = "GET_SELLER_SHOPS";
 export const GET_SHOP = "GET_SHOP";
 export const UPDATE_SHOP = "UPDATE_SHOP";
 export const DELETE_SHOP = "DELETE_SHOP";
+
+// Product management types
+export const CREATE_PRODUCT = "CREATE_PRODUCT";
+export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+export const SET_PRODUCT = "SET_PRODUCT";
+export const GET_PRODUCT = "GET_PRODUCT";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";

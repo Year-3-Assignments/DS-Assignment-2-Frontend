@@ -1,0 +1,18 @@
+.shop {
+  transition: box-shadow .3s;
+}
+
+.shop:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+  cursor: pointer; 
+}
+
+.btn:hover {
+  box-shadow: 0 0 15px rgba(33,33,33,.2);
+}
+
+.btn-primary.focus, .btn:focus {
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+  outline: 0;
+}

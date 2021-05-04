@@ -6,6 +6,16 @@ body {
   border-radius: 30px;
 }
 
+.btn-primary {
+  background: #3700B3;
+  border: none;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background: #6200EE;
+  border: none;
+}
+
 .form-control {
   display: block;
   width: 100%;

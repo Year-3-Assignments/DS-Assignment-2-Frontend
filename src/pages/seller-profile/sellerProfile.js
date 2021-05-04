@@ -55,7 +55,7 @@ class SellerProfile extends React.Component {
             <img src={imageUrl} className="card-img-top seller-image" alt="profile-image" />
           </div>
           <div className="card-body">
-            <h3 className="card-title">{firstName}&nbsp;&nbsp;{lastName}</h3>
+            <h6 className="card-title">{firstName}&nbsp;&nbsp;{lastName}</h6>
             {roles.map((role, index) => (
               <div key={index} className="mb-2">
                 {_.isEqual(role.name, 'ROLE_SELLER') ? <span className="badge rounded-pill bg-warning text-dark">SELLER</span> : null}

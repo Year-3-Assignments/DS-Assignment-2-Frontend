@@ -3,18 +3,18 @@ import { CREATE_SHOP, GET_SELLER_SHOPS, GET_SHOP, UPDATE_SHOP, DELETE_SHOP } fro
 const initialState = {
   setShop: '',
   getShops: '',
-  getShop: '',
+  setSellerShop: '',
   updateShop: '',
   deleteShop: '',
   setShopError: null,
   getShopsError: null,
-  getShopError: null,
+  setSellerShopError: null,
   updateShopError: null,
   deleteShopError: null
 };
 
 function shopReducer(state = initialState, action) {
-  let setShop, getShops, getShop, updateShop, deleteShop;
+  let setShop, getShops, setSellerShop, updateShop, deleteShop;
 
   switch (action.type) {
     case `${CREATE_SHOP}_PENDING`:
@@ -25,7 +25,7 @@ function shopReducer(state = initialState, action) {
       return { ...state, loading: true,
         setShopError: null,
         getShopsError: null,
-        getShopError: null,
+        setSellerShopError: null,
         updateShopError: null,
         deleteShopError: null
       };
@@ -37,13 +37,17 @@ function shopReducer(state = initialState, action) {
     case `${GET_SELLER_SHOPS}_FULFILLED`:
       getShops = action.payload.data;
       return { ...state, loading: false, getShops };
+
+    case `${GET_SHOP}`:
+      setSellerShop = action.payload;
+      return { ...state, loading: false, setSellerShop };
     
     case `${CREATE_SHOP}_REJECTED`:
       return { ...state, loading: false, setShopError: action.payload.data, state: initialState };
     case `${GET_SELLER_SHOPS}_REJECTED`:
       return { ...state, loading: false, getShopsError: action.payload.data, state: initialState };
     case `${GET_SHOP}_REJECTED`:
-      return { ...state, loading: false, getShopError: action.payload.data, state: initialState };
+      return { ...state, loading: false, setSellerShopError: action.payload.data, state: initialState };
     case `${UPDATE_SHOP}_REJECTED`:
       return { ...state, loading: false, updateShopError: action.payload.data, state: initialState };
     case `${DELETE_SHOP}_REJECTED`:
