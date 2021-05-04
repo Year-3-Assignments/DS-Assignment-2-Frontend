@@ -9,7 +9,7 @@ export default class Navbar extends React.Component {
   render() {
     return (
       <div>
-      <nav className="navbar navbar-light bg-light navbar-expand-sm shopping-nav">
+      <nav className="navbar fixed-top navbar-light bg-light navbar-expand-sm shopping-nav">
       <a className="navbar-brand" href="#">
       ShopaFy
       </a>

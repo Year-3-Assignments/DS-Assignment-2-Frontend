@@ -2,6 +2,10 @@ body {
   font-family:'Poppins';
 }
 
+.container {
+  max-width: 78%;
+}
+
 .btn-pill {
   border-radius: 30px;
 }

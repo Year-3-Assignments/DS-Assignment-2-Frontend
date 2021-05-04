@@ -10,7 +10,7 @@ export default class PageRoutes extends React.Component {
       <div>
         <Navbar/>
         <Router>
-          <section>
+          <section className="mt-5">
             <Switch>
               <Route path="/signup" component={SignUp} exact />
               <Route path="/me" component={SellerProfilePage} exact />
