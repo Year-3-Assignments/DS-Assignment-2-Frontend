@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navbar from '../components/navbar/navbar';
+import Navbar from '../components/navbar/navBar';
 import UserProfilePage from '../pages/user-profile/userPrfilePage';
-import SignUpPage from '../pages/signUp/signUpPage';
+import SignUpPage from '../pages/SignUp/signUpPage';
 
 export default class PageRoutes extends React.Component {
   render() {
