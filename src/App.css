@@ -28,6 +28,14 @@ body {
   border: none;
 }
 
+.btn-warning {
+  background: #ff6d00;
+}
+
+.btn-warning:hover, .btn-warning:focus {
+  background: #f57c00;
+}
+
 .form-control {
   display: block;
   width: 100%;

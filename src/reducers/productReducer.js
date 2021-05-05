@@ -42,6 +42,10 @@ function productReducer(state = initialState, action) {
       getAllProducts = action.payload.data;
       return { ...state, loading: false, getAllProducts };
 
+    case `${GET_PRODUCT}_FULFILLED`:
+      getProduct = action.payload.data;
+      return { ...state, loading: false, getProduct };
+
     case `${SET_PRODUCT}`:
       setProduct = action.payload;
       return { ...state, loading: false, setProduct };
