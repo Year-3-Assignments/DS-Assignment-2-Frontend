@@ -1,0 +1,19 @@
+.seller-image {
+  width: 200px; 
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.seller-card {
+  width: 100%;
+}
+
+.create-shop {
+  font-size: 14px;
+}
+
+.border, .card {
+  border-radius: 10px;
+}
+
