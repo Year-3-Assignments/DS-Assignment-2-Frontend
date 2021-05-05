@@ -2,16 +2,17 @@ import React from 'react';
 import _ from 'lodash';
 import { setSellerShop } from '../../actions/shopAcions';
 import { connect } from 'react-redux';
-import SellerProfile from './sellerProfile';
+import SellerProfile from './userProfile';
 import ShopCreate from '../shops/shopCreate';
 import SellerShops from '../shops/sellerShops';
 import Shop from '../shops/shop';
+import CreateProduct from '../../components/products/createProduct';
 
 const initialState = {
   isShopSelected: false
 }
 
-class SellerProfilePage extends React.Component {
+class UserProfilePage extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -29,23 +30,29 @@ class SellerProfilePage extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-md-3 col-sm-12">
+          <div className="col-md-2 col-sm-12">
             <SellerProfile/>
           </div>
           <div className="col-md-6">
-            {!isShopSelected ? 
+            {localStorage.getItem("roles") === 'ROLE_SELLER' ?
               <div>
-                <ShopCreate/>
-                <SellerShops/>
-              </div>
-            : 
-              <div>
-                <Shop />
-              </div>
-            }
+                {!isShopSelected ? 
+                  <div>
+                    <SellerShops/>
+                  </div>
+                : 
+                  <div>
+                    <Shop />
+                  </div>
+                }
+              </div> : null }
+            
+            {localStorage.getItem("roles") === 'ROLE_BUYER' ? 
+              <div></div> : null}
           </div>
-          <div className="col-md-3">
-
+          <div className="col-md-4">
+            {localStorage.getItem("roles") === 'ROLE_SELLER' ? 
+              <div>{isShopSelected ? <CreateProduct/> : <ShopCreate/>}</div> : null}
           </div>
         </div>
       </div>
@@ -63,4 +70,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SellerProfilePage);
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfilePage);

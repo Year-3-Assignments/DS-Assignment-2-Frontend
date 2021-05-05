@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { getUserAccount } from '../../actions/userActions';
-import './sellerProfile.css';
+import './userProfile.css';
 
 const initialState = {
   id: '',
@@ -17,7 +17,7 @@ const initialState = {
   imageUrl: ''
 }
 
-class SellerProfile extends React.Component {
+class UserProfile extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -55,17 +55,17 @@ class SellerProfile extends React.Component {
             <img src={imageUrl} className="card-img-top seller-image" alt="profile-image" />
           </div>
           <div className="card-body">
-            <h3 className="card-title">{firstName}&nbsp;&nbsp;{lastName}</h3>
+            <h5 className="card-title">{firstName}&nbsp;&nbsp;{lastName}</h5>
             {roles.map((role, index) => (
               <div key={index} className="mb-2">
-                {_.isEqual(role.name, 'ROLE_SELLER') ? <span className="badge rounded-pill bg-warning text-dark">SELLER</span> : null}
-                {_.isEqual(role.name, 'ROLE_BUYER') ? <span className="badge rounded-pill bg-info text-dark">SELLER</span> : null}
+                {localStorage.getItem("roles") === 'ROLE_SELLER' ? <span className="badge rounded-pill bg-warning text-dark">SELLER</span> : null}
+                {localStorage.getItem("roles") === 'ROLE_BUYER' ? <span className="badge rounded-pill bg-info text-dark">BUYER</span> : null}
               </div>
             ))}
-            <p className="card-text text-muted p-0 m-0 mb-1">{email}</p>
-            <p className="card-text text-muted p-0 m-0 mb-2">{phoneNumber}</p>
-            <h5 className="card-text p-0 m-0 mb-2">Address</h5>
-            <p className="card-text text-muted p-0 m-0 mb-2">{address_1}, {address_2}, {city}</p>
+            <p className="card-text text-muted p-0 m-0 mb-1 seller-card-font">{email}</p>
+            <p className="card-text text-muted p-0 m-0 mb-2  seller-card-font">{phoneNumber}</p>
+            <h6 className="card-text p-0 m-0 mb-2">Address</h6>
+            <p className="card-text text-muted p-0 m-0 mb-2 seller-card-font">{address_1}, {address_2}, {city}</p>
             <div className="d-flex justify-content-center">
               <a href="#" className="btn btn-primary btn-sm btn-pill">EDIT PROFILE</a>
             </div>
@@ -86,4 +86,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SellerProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

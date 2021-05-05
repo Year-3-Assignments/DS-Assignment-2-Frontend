@@ -2,7 +2,6 @@ import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { setSellerShop, getSellerShops } from '../../actions/shopAcions';
-import CreateProduct from '../../components/products/createProduct';
 import SellerProduct from '../../components/products/sellerProduct';
 
 const initialState = {
@@ -54,9 +53,8 @@ class Shop extends React.Component {
       </div>
         <div>
           <div>
-            <h4>{shop.shopName}</h4>
-            <CreateProduct/>
-
+            <h3><strong>{shop.shopName}</strong></h3>
+          
             <h5 className="mt-3">Shop Products</h5>
             <div className="row">
               {shop.products && shop.products.map((product, index) => (

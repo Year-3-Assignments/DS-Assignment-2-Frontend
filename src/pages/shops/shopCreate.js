@@ -89,7 +89,6 @@ class ShopCreate extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  setShop: state.userReducer.setShop
 });
 
 const mapDispatchToProps = dispatch => ({
