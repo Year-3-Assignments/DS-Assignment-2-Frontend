@@ -6,7 +6,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { createUserAccount } from '../../actions/userActions';
 
-const initialState = {
+const initialState = { 
   firstName: '',
   lastName: '',
   email: '',
@@ -28,7 +28,7 @@ const initialState = {
 
 let formData = {};
 
-class SignUp extends React.Component {
+class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
@@ -153,7 +153,7 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center mt-5">
         <div className="border signup-form"  style={{width: '650px'}}>
           <form className="m-4">
             <h5>Create New Account</h5>
@@ -282,4 +282,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
