@@ -19,3 +19,8 @@ export const SET_PRODUCT = "SET_PRODUCT";
 export const GET_PRODUCT = "GET_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
+
+// Order management types
+export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
+export const UPDATE_ORDER = "UPDATE_ORDER";
+export const DELETE_ORDER = "DELETE_ORDER";

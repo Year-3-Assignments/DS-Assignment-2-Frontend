@@ -1,0 +1,52 @@
+import { GET_ALL_ORDERS, UPDATE_ORDER, DELETE_ORDER } from '../actions/index';
+
+const initialState = {
+    orderCode: '',
+    createdDate: '',
+    status: '',
+    products: [],
+    getAllOrderError: null,
+    getOrderError: null,
+    updateOrderError: null,
+    deleteOrderError: null
+}
+
+function orderReducer(state = initialState, action) {
+    let getAllOrders, updateOrder, deleteOrder;
+
+    switch (action.type) {
+        case `${GET_ALL_ORDERS}_PENDING`:
+        case `${UPDATE_ORDER}_PENDING`:
+        case `${DELETE_ORDER}_PENDING`:
+            return { ...state, loading: true,
+                getAllOrderError: null,
+                getOrderError: null,
+                updateOrderError: null,
+                deleteOrderError: null
+            };
+
+        case `${GET_ALL_ORDERS}_FULFILLED`:
+            getAllOrders = action.payload.data;
+            return { ...state, loading: false, getAllOrders };
+
+        case `${UPDATE_ORDER}_FULFILLED`:
+            updateOrder = action.payload.data;
+            return { ...state, loading: false, updateOrder };
+
+        case `${DELETE_ORDER}_FULFILLED`:
+            deleteOrder = action.payload.data;
+            return { ...state, loading: false, deleteOrder };
+
+        case `${GET_ALL_ORDERS}_REJECTED`:
+            return { ...state, loading: false, getAllProductsError: action.payload.data, state: initialState };
+        case `${UPDATE_ORDER}_REJECTED`:
+            return { ...state, loading: false, updateProductError: action.payload.data, state: initialState };
+        case `${DELETE_ORDER}_REJECTED`:
+            return { ...state, loading: false, deleteProductError: action.payload.data, state: initialState };
+
+        default:
+            return state;
+    }
+}
+
+export default orderReducer;

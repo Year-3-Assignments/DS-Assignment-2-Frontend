@@ -7,6 +7,7 @@ import ShopCreate from '../shops/shopCreate';
 import SellerShops from '../shops/sellerShops';
 import Shop from '../shops/shop';
 import CreateProduct from '../../components/products/createProduct';
+import BuyerOrder from '../../components/orders/buyerOrder';
 
 const initialState = {
   isShopSelected: false
@@ -48,7 +49,7 @@ class UserProfilePage extends React.Component {
               </div> : null }
             
             {localStorage.getItem("roles") === 'ROLE_BUYER' ? 
-              <div></div> : null}
+              <div><BuyerOrder/></div> : null}
           </div>
           <div className="col-md-4">
             {localStorage.getItem("roles") === 'ROLE_SELLER' ? 
