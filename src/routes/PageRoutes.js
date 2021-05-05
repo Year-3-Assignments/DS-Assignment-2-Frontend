@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
-import SellerProfilePage from '../pages/seller-profile/sellerPrfilePage';
+import SellerProfilePage from '../pages/user-profile/userPrfilePage';
 import SignUp from '../pages/signup/signUpPage';
 
 export default class PageRoutes extends React.Component {

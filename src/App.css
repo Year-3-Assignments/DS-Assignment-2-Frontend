@@ -2,8 +2,16 @@ body {
   font-family:'Poppins';
 }
 
-.container {
-  max-width: 78%;
+@media (min-width: 1199.98px) {
+  .container {
+    max-width: 78%;
+  }
+}
+
+@media (min-width: 1399.98px) {
+  .container {
+    max-width: 78%;
+  }
 }
 
 .btn-pill {

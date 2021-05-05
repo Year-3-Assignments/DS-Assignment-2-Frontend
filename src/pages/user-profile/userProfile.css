@@ -1,8 +1,12 @@
 .seller-image {
-  width: 200px; 
-  height: 200px;
+  width: 150px; 
+  height: 150px;
   object-fit: cover;
   border-radius: 50%;
+}
+
+.seller-card-font {
+  font-size: 14px;
 }
 
 .seller-card {
