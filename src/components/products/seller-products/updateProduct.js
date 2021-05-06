@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NotificationManager } from 'react-notifications';
-import { updateProduct } from '../../actions/productActions';
+import { updateProduct } from '../../../actions/productActions';
 
 let formData = {};
 const $ = window.$;

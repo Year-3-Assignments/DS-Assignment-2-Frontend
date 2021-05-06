@@ -7,6 +7,7 @@ export const DELETE_USER_ACCOUNT = "DELETE_USER_ACCOUNT";
 // Shop management types
 export const CREATE_SHOP = "CREATE_SHOP";
 export const GET_SELLER_SHOPS = "GET_SELLER_SHOPS";
+export const SET_SELLER_SHOP = "SET_SELLER_SHOP";
 export const GET_SHOP = "GET_SHOP";
 export const UPDATE_SHOP = "UPDATE_SHOP";
 export const DELETE_SHOP = "DELETE_SHOP";

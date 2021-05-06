@@ -7,7 +7,8 @@ const initialState = {
   shopName: '',
   shopPhoneNumber: '',
   user: '',
-  isFormNotValid: false
+  isFormNotValid: false,
+  loading: false
 }
 
 let formData = {};
@@ -24,8 +25,15 @@ class ShopCreate extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  componentWillReceiveProps = (nextProps) => {
+    if (this.props.getShops !== nextProps.getShops) {
+      this.setState({ loading: nextProps.shopLoading });
+    }
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
+    this.setState({ loading: true });
     if (this.validateForm()) {
       let data = Object.values(formData).map(key => {
         return key !== null;
@@ -79,7 +87,14 @@ class ShopCreate extends React.Component {
             </div>
 
             <div className="d-flex justify-content-end">
-              <a href="#" className="btn btn-info btn-sm btn-pill" onClick={this.onSubmit}>CREATE SHOP</a>
+              {!this.state.loading ? 
+                <a href="#" className="btn btn-dark btn-sm btn-pill" onClick={this.onSubmit}>CREATE SHOP</a>
+              :
+                <button className="btn btn-dark btn-pill btn-sm" type="button">
+                  <span className="spinner-border spinner-border-sm pt-0" role="status" aria-hidden="true"></span>
+                  <span className="ml-2">CREATING...</span>
+                </button>
+              }
             </div>
           </form>
         </div>
@@ -89,7 +104,8 @@ class ShopCreate extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  setShop: state.userReducer.setShop
+  getShops: state.shopReducer.getShops,
+  shopLoading: state.shopReducer.loading
 });
 
 const mapDispatchToProps = dispatch => ({

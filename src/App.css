@@ -2,8 +2,16 @@ body {
   font-family:'Poppins';
 }
 
-.container {
-  max-width: 78%;
+@media (min-width: 1199.98px) {
+  .container {
+    max-width: 78%;
+  }
+}
+
+@media (min-width: 1399.98px) {
+  .container {
+    max-width: 78%;
+  }
 }
 
 .btn-pill {
@@ -18,6 +26,24 @@ body {
 .btn-primary:hover, .btn-primary:focus {
   background: #6200EE;
   border: none;
+}
+
+.btn-warning {
+  background: #ff6d00;
+}
+
+.btn-warning:hover, .btn-warning:focus {
+  background: #f57c00;
+}
+
+.btn:hover {
+  box-shadow: 0 0 5px rgba(27, 27, 27, 0.651);
+}
+
+.btn-primary.focus, .btn:focus {
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+  outline: 0;
 }
 
 .form-control {

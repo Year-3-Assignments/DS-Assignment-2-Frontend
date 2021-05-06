@@ -1,32 +1,55 @@
 import React from 'react';
-import BuyerProduct from '../../components/products/BuyerProduct';
+import { connect } from 'react-redux';
+import { getAllProducts } from '../../actions/productActions';
+import Products from './products';
+import Pagination from '../../components/pagination/pagination';
 
+class ProductsPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [],
+      isLoading: false,
+      currentPage: 1,
+      itemsPerPage: 24
+    }
+  }
 
-class ProductsPage extends React.Component  {
+  componentDidMount() {
+    this.props.getAllProducts();
+  }
 
- render() {
+  componentWillReceiveProps = (nextProps) => {
+    if (this.props.allProducts !== nextProps.allProducts) {
+      this.setState({ products: nextProps.allProducts });
+    }
+  }
+
+  render() {
+    let { products, currentPage, itemsPerPage } = this.state;
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
+
+    const paginate = (pageNumber) => this.setState({ currentPage: pageNumber })
+
     return (
-        <div>
-          <BuyerProduct/>
-          <br></br> <br></br> <br></br> <br></br>
-            <div className="d-flex justify-content-end text-right mt-2 ">
-                <nav className="paging">
-                    <ul className="pagination">
-                        <li className="page-item"><a className="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                        <li className="page-item"><a className="page-link" href="#">1</a></li>
-                        <li className="page-item"><a className="page-link" href="#">2</a></li>
-                        <li className="page-item"><a className="page-link" href="#">3</a></li>
-                        <li className="page-item"><a className="page-link" href="#">4</a></li>
-                        <li className="page-item"><a className="page-link" href="#">5</a></li>
-                        <li className="page-item"><a className="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-   
+      <div className="container">
+        <Products products={currentItems} />
+        <Pagination totalItems={products.length} itemsPerPage={itemsPerPage} paginate={paginate} />
+      </div>
     )
-}
+  }
 }
 
+const mapStateToProps = state => ({
+  allProducts: state.productReducer.getAllProducts
+});
 
-export default ProductsPage;
+const mapDispatchToProps = dispatch => ({
+  getAllProducts: () => {
+    dispatch(getAllProducts());
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsPage);
