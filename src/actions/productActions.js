@@ -12,6 +12,20 @@ export function createNewProduct(product) {
   };
 }
 
+export function getAllProducts() {
+  return {
+    type: GET_ALL_PRODUCTS,
+    payload: axios.get(`${process.env.REACT_APP_API_URL}/product/`)
+  };
+}
+
+export function getProductById(productId) {
+  return {
+    type: GET_PRODUCT,
+    payload: axios.get(`${process.env.REACT_APP_API_URL}/product/${productId}`)
+  };
+}
+
 export function updateProduct(product) {
   return {
     type: UPDATE_PRODUCT,
@@ -20,13 +34,6 @@ export function updateProduct(product) {
         "Authorization": localStorage.getItem("Authorization")
       }
     })
-  };
-}
-
-export function setProduct(product) {
-  return {
-    type: SET_PRODUCT,
-    payload: product
   };
 }
 
@@ -41,9 +48,9 @@ export function deleteProduct(product) {
   };
 }
 
-export function getAllProducts() {
+export function setProduct(product) {
   return {
-    type: GET_ALL_PRODUCTS,
-    payload: axios.get(`${process.env.REACT_APP_API_URL}/product/`)
+    type: SET_PRODUCT,
+    payload: product
   };
 }
