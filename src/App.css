@@ -36,6 +36,16 @@ body {
   background: #f57c00;
 }
 
+.btn:hover {
+  box-shadow: 0 0 5px rgba(27, 27, 27, 0.651);
+}
+
+.btn-primary.focus, .btn:focus {
+  -webkit-box-shadow: none!important;
+  box-shadow: none!important;
+  outline: 0;
+}
+
 .form-control {
   display: block;
   width: 100%;

@@ -6,7 +6,7 @@ import SellerProfile from './userProfile';
 import ShopCreate from '../shops/shopCreate';
 import SellerShops from '../shops/sellerShops';
 import Shop from '../shops/shop';
-import CreateProduct from '../../components/products/createProduct';
+import CreateProduct from '../../components/products/seller-products/createProduct';
 
 const initialState = {
   isShopSelected: false,

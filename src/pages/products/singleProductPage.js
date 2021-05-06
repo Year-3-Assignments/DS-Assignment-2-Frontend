@@ -5,7 +5,7 @@ import { getProductById } from '../../actions/productActions';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-import SingleShopProduct from '../../components/products/singleShopProduct';
+import SingleShopProduct from '../../components/products/buyer-products/singleShopProduct';
 
 const responsive = {
   0: {
@@ -73,8 +73,9 @@ class SingleProductPage extends React.Component {
             <p className="product-info-text m-0"><b>Seller</b> : {sellerDetails.firstName}&nbsp;{sellerDetails.lastName}</p>
             <p className="product-info-text m-0"><b>Email</b> : {sellerDetails.email}</p>
             <p className="product-info-text m-0 pb-3"><b>Address</b> : {sellerDetails.address_1}, {sellerDetails.address_2}, {sellerDetails.city}</p>
-            <button className="btn btn-lg btn-warning btn-pill"><b>ADD TO CART</b>&nbsp;&nbsp;<i className="fas fa-cart-arrow-down"></i></button>&nbsp;&nbsp;
-            <button className="btn btn-lg btn-success call-btn btn-pill"><b>CONTACT SELLER</b>&nbsp;&nbsp;<i className="fas fa-phone-volume"></i></button>
+
+            <button className="btn btn-dark btn-pill"><b>ADD TO CART</b>&nbsp;&nbsp;<i className="fas fa-cart-arrow-down"></i></button>&nbsp;&nbsp;
+            <button className="btn btn-dark btn-pill"><b>CONTACT SELLER</b>&nbsp;&nbsp;<i className="fas fa-phone-volume"></i></button>
           </div>
         </div>
 

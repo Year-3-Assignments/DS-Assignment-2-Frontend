@@ -10,7 +10,8 @@ import UpdateShop from './updateShop';
 const initialState = {
   shops: [],
   shopId: '',
-  loading: false
+  loading: false,
+  isDeleting: false
 }
 const $ = window.$;
 class SellerShops extends React.Component {
@@ -32,7 +33,8 @@ class SellerShops extends React.Component {
     if (this.props.getShops !== nextProps.getShops) {
       this.setState({ 
         shops: nextProps.getShops,
-        loading: nextProps.shopLoading
+        loading: nextProps.shopLoading,
+        isDeleting: nextProps.isDeleting
       })
     }
 
@@ -67,7 +69,7 @@ class SellerShops extends React.Component {
     let shop = {
       id: this.state.shopId
     }
-    console.log('id', shop)
+    this.setState({ isDeleting: true });
     this.props.deleteSellerShop(shop);
     $("#delete-shop").modal("toggle");
   }
@@ -85,7 +87,9 @@ class SellerShops extends React.Component {
                 <div className="p-3">
                   <div className="row">
                     <div className="col-md-10" onClick={e => this.selectSellerShop(e, shop.id)}>
-                      <h5>{shop.shopName}</h5>
+                      <h5>
+                        {shop.shopName}
+                      </h5>
                       <h6 className="text-muted">{shop.phoneNumber}</h6>
                       <h6>Created @ {moment(shop.createdAt).format('LLLL')}</h6>
                     </div>
@@ -95,6 +99,14 @@ class SellerShops extends React.Component {
                       <button className="rounded-circle btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#delete-shop" onClick={e => this.setDeleteShop(e, shop.id)} style={{height: '34px', width: '40px'}}><i className="fas fa-trash"></i></button>
                     </div>
                   </div>
+                  {this.state.isDeleting && this.state.shopId === shop.id ? 
+                    <div class="d-flex align-items-center">
+                      <strong>Deleting...</strong>
+                      <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+                    </div>
+                  : 
+                    null
+                  }
                 </div>
     
                 <UpdateShop />
@@ -140,7 +152,8 @@ const mapStateToProps = state => ({
   createShop: state.shopReducer.createShop,
   updateShop: state.shopReducer.updateShop,
   deleteShop: state.shopReducer.deleteShop,
-  shopLoading: state.shopReducer.loading
+  shopLoading: state.shopReducer.loading,
+  isDeleting: state.shopReducer.loading
 });
 
 const mapDispatchToProps = dispatch => ({

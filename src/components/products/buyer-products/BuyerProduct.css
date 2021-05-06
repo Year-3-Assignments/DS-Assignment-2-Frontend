@@ -1,0 +1,15 @@
+.buyer-product-cart-title {
+  font-weight: 800;
+  font-size: 22px;
+}
+
+.buyer-product-card {
+  width: 230px;
+}
+
+.buyer-product-img {
+  border-radius: 9px;
+  width: 100%; 
+  height: 230px;
+  object-fit: cover;
+}

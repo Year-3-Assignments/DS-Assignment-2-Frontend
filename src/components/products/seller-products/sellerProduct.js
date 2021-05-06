@@ -2,7 +2,7 @@ import React from 'react';
 import './sellerProduct.css';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { setProduct, deleteProduct } from '../../actions/productActions';
+import { setProduct, deleteProduct } from '../../../actions/productActions';
 import UpdateProduct from './updateProduct';
 
 const $ = window.$;
