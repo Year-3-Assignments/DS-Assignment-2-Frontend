@@ -9,7 +9,7 @@ import Shop from '../shops/shop';
 import CreateProduct from '../../components/products/createProduct';
 
 const initialState = {
-  isShopSelected: false
+  isShopSelected: false,
 }
 
 class UserProfilePage extends React.Component {
@@ -21,7 +21,9 @@ class UserProfilePage extends React.Component {
 
   componentWillReceiveProps = (nextProps) => {
     if (this.props.sellerShop !== nextProps.setSellerShop) {
-      this.setState({ isShopSelected: !this.state.isShopSelected });
+      this.setState({ 
+        isShopSelected: !this.state.isShopSelected,
+      });
     }
   }
   
@@ -29,7 +31,7 @@ class UserProfilePage extends React.Component {
     let { isShopSelected } = this.state;
     return (
       <div className="container">
-        <div className="row">
+        <div className="row"> 
           <div className="col-md-2 col-sm-12">
             <SellerProfile/>
           </div>
