@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getAllProducts } from '../../actions/productActions';
 import Products from './products';
 import Pagination from '../../components/pagination/pagination';
+import LandingPage from '../landing/landingPage';
 
 class ProductsPage extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class ProductsPage extends React.Component {
       products: [],
       isLoading: false,
       currentPage: 1,
-      itemsPerPage: 24
+      itemsPerPage: 24,
+      isPageLoading: true
     }
   }
 
@@ -21,7 +23,10 @@ class ProductsPage extends React.Component {
 
   componentWillReceiveProps = (nextProps) => {
     if (this.props.allProducts !== nextProps.allProducts) {
-      this.setState({ products: nextProps.allProducts });
+      this.setState({ 
+        products: nextProps.allProducts,
+        isPageLoading: nextProps.isLoading
+      });
     }
   }
 
@@ -35,15 +40,29 @@ class ProductsPage extends React.Component {
 
     return (
       <div className="container">
-        <Products products={currentItems} />
-        <Pagination totalItems={products.length} itemsPerPage={itemsPerPage} paginate={paginate} />
+        <LandingPage/>
+        {!this.state.isPageLoading ? 
+          <div>
+            <Products products={currentItems} />
+            <Pagination totalItems={products.length} itemsPerPage={itemsPerPage} paginate={paginate} />
+          </div>
+        :
+          <div class="text-center page-loading">
+            <div className="align-text-bottom">
+              <div class="spinner-border" role="status" style={{width: '5rem', height: '5rem'}}>
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </div>
+        }
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  allProducts: state.productReducer.getAllProducts
+  allProducts: state.productReducer.getAllProducts,
+  isLoading: state.productReducer.loading
 });
 
 const mapDispatchToProps = dispatch => ({

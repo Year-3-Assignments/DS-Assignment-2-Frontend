@@ -10,7 +10,7 @@ class Products extends React.Component {
     return (
       <div className="row">
         {this.props.products && this.props.products.map((item, index) => (
-          <div key={index} className="col-md-2">
+          <div key={index} className="col-sm-4 col-6 col-lg-2">
             <BuyerProduct 
               productName={item.productName} 
               price={item.unitPrice} 
