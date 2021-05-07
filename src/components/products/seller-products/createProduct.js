@@ -1,5 +1,5 @@
 import React from 'react';
-import Progress from '../../progress/Progress';
+import Progress from '../../progress/progress';
 import firebase from '../../../firebase.config';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
