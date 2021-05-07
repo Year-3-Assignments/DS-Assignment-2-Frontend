@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from '../../firebase.config';
-import Progress from '../../components/progress/Progress';
+import Progress from '../../components/progress/progress';
 import { NotificationManager } from 'react-notifications';
 import _ from 'lodash';
 import { connect } from 'react-redux';
