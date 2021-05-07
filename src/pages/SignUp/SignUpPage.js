@@ -1,8 +1,9 @@
 import React from 'react';
-import './signUp.css';
-import SignUpForm from './signUpForm';
+import './SignUp.css';
+import SignUpForm from './SignUpForm';
 
-export default class SignUp extends React.Component {
+export default class SignUp
+ extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -10,7 +11,7 @@ export default class SignUp extends React.Component {
   render() {
     return (
       <div className="body mt-4">
-        <SignUpForm />   
+        <SignUpForm/>   
       </div>
     )
   }

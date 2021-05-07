@@ -1,5 +1,7 @@
 import { CREATE_USER_ACCOUNT, GET_USER_ACCOUNT, UPDATE_USER_ACCOUNT, DELETE_USER_ACCOUNT } from '../actions/index';
 
+
+
 const initialState = {
   setUser: '',
   getUser: '',
@@ -9,7 +11,9 @@ const initialState = {
   getUserError: null,
   updateUserError: null,
   deleteUserError: null
-};
+}
+
+
 
 function userReducer(state = initialState, action) {
   let setUser, getUser, updateUser, deleteUser;
