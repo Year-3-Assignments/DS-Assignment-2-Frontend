@@ -3,6 +3,7 @@ export const CREATE_USER_ACCOUNT = "CREATE_USER_ACCOUNT";
 export const GET_USER_ACCOUNT = "GET_USER_ACCOUNT";
 export const UPDATE_USER_ACCOUNT = "UPDATE_USER_ACCOUNT";
 export const DELETE_USER_ACCOUNT = "DELETE_USER_ACCOUNT";
+export const LOGIN_USER_ACCOUNT = "LOGIN_USER_ACCOUNT";
 
 // Shop management types
 export const CREATE_SHOP = "CREATE_SHOP";
@@ -19,3 +20,5 @@ export const SET_PRODUCT = "SET_PRODUCT";
 export const GET_PRODUCT = "GET_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
+
+

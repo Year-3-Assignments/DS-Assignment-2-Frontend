@@ -6,7 +6,7 @@ import productReducer from './productReducer';
 const allReducers = combineReducers({
   userReducer,
   shopReducer,
-  productReducer
+  productReducer,
 });
 
 export default allReducers;
