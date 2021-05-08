@@ -1,4 +1,3 @@
-import 'react-notifications/lib/notifications.css';
 import './App.css'
 import PageRoutes from './routes/PageRoutes'
 
