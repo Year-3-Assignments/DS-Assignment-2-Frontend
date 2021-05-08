@@ -3,8 +3,6 @@ import './login.css';
 import { connect } from "react-redux";
 import { loginUser } from '../../actions/userActions';
 import NotificationManager from "../../components/notifications/notificationCreator";
-import { Link } from 'react-router-dom';
-import SignUpForm from '../SignUp/signUpForm';
 
 let formData = {};
 class LoginPage extends React.Component {
