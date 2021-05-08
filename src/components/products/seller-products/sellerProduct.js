@@ -2,7 +2,7 @@ import React from 'react';
 import './sellerProduct.css';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { setProduct, deleteProduct } from '../../actions/productActions';
+import { setProduct, deleteProduct } from '../../../actions/productActions';
 import UpdateProduct from './updateProduct';
 
 const $ = window.$;
@@ -16,9 +16,14 @@ class SellerProduct extends React.Component {
     this.props.setProduct(product);
   }
 
+  setDeleteProduct = (e) => {
+    let product = this.props;
+    this.props.setProduct(product);
+  }
+
   deleteProduct = (e) => {
     let product = {
-      id: this.props.id
+      id: this.props.product.id
     }
     this.props.deleteProduct(product);
     $("#delete_item").modal("toggle");
@@ -28,13 +33,13 @@ class SellerProduct extends React.Component {
     return (
       <div className="product-card">
         <div className="card mb-3" >
-        <div className="img-wrapper">
-          <img src={this.props.imageUrl} className="card-img-top product-image" alt="product-image" />
-          <div className="img-overlay">
-            <button className="rounded-circle btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#update-product" style={{height: '34px'}} onClick={this.editProduct}><i className="far fa-edit"></i></button>&nbsp;&nbsp;
-            <button className="rounded-circle btn btn-dark btn-sm" style={{height: '34px', width: '35px'}} data-bs-toggle="modal" data-bs-target="#delete_item"><i className="fas fa-trash"></i></button>
+          <div className="img-wrapper">
+            <img src={this.props.imageUrl} className="card-img-top product-image" alt="product-image" />
+            <div className="img-overlay">
+              <button className="rounded-circle btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#update-product" style={{height: '34px'}} onClick={this.editProduct}><i className="far fa-edit"></i></button>&nbsp;&nbsp;
+              <button className="rounded-circle btn btn-dark btn-sm" style={{height: '34px', width: '35px'}} data-bs-toggle="modal" data-bs-target="#delete_item" onClick={this.setDeleteProduct}><i className="fas fa-trash"></i></button>
+            </div>
           </div>
-        </div>
 
           <div className="card-body">
             <h5 className="card-title product-cart-title"><strong>{this.props.productName}</strong></h5>
@@ -72,7 +77,9 @@ class SellerProduct extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  product: state.productReducer.setProduct
+});
 
 const mapDispatchToProps = dispatch => ({
   setProduct: product => {

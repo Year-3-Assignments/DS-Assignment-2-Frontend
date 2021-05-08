@@ -1,72 +1,16 @@
-
-.body {
-	background: #eee !important;
-    font-size: 13px;
-    align-items: center;	
+.wrapper {	
+  margin-top: 100px;
+  margin-bottom: 80px;
 }
 
-  .form-control {
-    display: block;
-    width: 100%;
-    height: calc(1.5em + 0.75rem + 2px);
-    padding: 0.375rem 0.75rem;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 1.5;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: border-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-  }
-  
-  .form-control:focus {
-    color: #495057;
-    background-color: #fff;
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0 0 0 0rem rgba(0, 123, 255, 0.25);
-  }
+.login-form {
+  font-size: 13px;
+}
 
-  .wrapper {	
-      margin-top: 80px;
-    margin-bottom: 80px;
-  }
-  
-  .login-form {
-    max-width: 380px;
-    padding: 15px 35px 45px;
-    margin: 0 auto;
-    background-color: #fff;
-    border: 1px solid rgba(0,0,0,0.1);  
-  }
-    .form-signin-heading,
-      .checkbox {
-        margin-bottom: 30px;
-      }
-  
-      .checkbox {
-        font-weight: normal;
-      }
-  
-      .form-control {
-        position: relative;
-        font-size: 16px;
-        height: auto;
-        padding: 10px;
-      }
-    
-  
-      input[type="text"] {
-        margin-bottom: -1px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-  
-      input[type="password"] {
-        margin-bottom: 20px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-      }
-  
-  
+.form-signin-heading,
+.checkbox {
+  margin-bottom: 8px;
+  font-weight: normal;
+}
+
+
