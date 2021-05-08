@@ -119,7 +119,7 @@ class SignUpForm extends React.Component {
         };
 
         console.log('DATA TO SEND', userData);
-        // this.props.createUserAccount(userData);
+        this.props.createUserAccount(userData);
         NotificationManager.success('User account successfully created', 'Success')
       } else {
         this.setState({ formNotValid: true }, () => {
