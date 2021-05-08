@@ -47,10 +47,10 @@ class ProductsPage extends React.Component {
             <Pagination totalItems={products.length} itemsPerPage={itemsPerPage} paginate={paginate} />
           </div>
         :
-          <div class="text-center page-loading">
+          <div className="text-center page-loading">
             <div className="align-text-bottom">
-              <div class="spinner-border" role="status" style={{width: '5rem', height: '5rem'}}>
-                <span class="visually-hidden">Loading...</span>
+              <div className="spinner-border" role="status" style={{width: '5rem', height: '5rem'}}>
+                <span className="visually-hidden">Loading...</span>
               </div>
             </div>
           </div>

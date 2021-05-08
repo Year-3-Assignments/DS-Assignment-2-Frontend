@@ -5,6 +5,10 @@
   object-fit: cover;
 }
 
+.quantity-bg {
+  background: rgb(212, 211, 211);
+}
+
 @media (min-width: 406px) {
   .buyer-product-card {
     width: 180px;
