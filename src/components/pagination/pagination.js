@@ -13,7 +13,7 @@ class Pagination extends React.Component {
     }
 
     return (
-      <nav className="d-flex justify-content-center">
+      <nav className="d-flex justify-content-center mt-5">
         <ul className="pagination">
           {pageNumbers.map(number => (
             <li key={number} className="page-item">
