@@ -36,7 +36,7 @@ class NotificationManager extends React.Component {
     switch (this.props.type) {
       case 'success':
         return (
-          <Snackbar open={this.state.isAlertOpen} autoHideDuration={3000} onClose={this.handleClose} anchorOrigin={{vertical: "top", horizontal: "right"}}>
+          <Snackbar open={this.state.isAlertOpen} autoHideDuration={9000} onClose={this.handleClose} anchorOrigin={{vertical: "top", horizontal: "right"}}>
             <Alert onClose={this.handleClose} severity="success">
               {this.props.message}
             </Alert>
@@ -45,7 +45,7 @@ class NotificationManager extends React.Component {
     
       case 'warning':
         return (
-          <Snackbar open={this.state.isAlertOpen} autoHideDuration={3000} onClose={this.handleClose} anchorOrigin={{vertical: "top", horizontal: "right"}}>
+          <Snackbar open={this.state.isAlertOpen} autoHideDuration={9000} onClose={this.handleClose} anchorOrigin={{vertical: "top", horizontal: "right"}}>
             <Alert onClose={this.handleClose} severity="warning">
               {this.props.message}
             </Alert>
@@ -54,7 +54,7 @@ class NotificationManager extends React.Component {
       
       case 'error':
         return (
-          <Snackbar open={this.state.isAlertOpen} autoHideDuration={3000} onClose={this.handleClose} anchorOrigin={{vertical: "top", horizontal: "right"}}>
+          <Snackbar open={this.state.isAlertOpen} autoHideDuration={9000} onClose={this.handleClose} anchorOrigin={{vertical: "top", horizontal: "right"}}>
             <Alert onClose={this.handleClose} severity="error">
               {this.props.message}
             </Alert>

@@ -37,7 +37,7 @@ export function incrementItemQuantity(item) {
 export function decrementItemQuantity(item) {
   return {
     type: DECREMENT_ITEM_QUANTITY,
-    payload: axios.put(`${process.env.REACT_APP_API_URL}/api/cart/change/add/${item.id}`, null, {
+    payload: axios.put(`${process.env.REACT_APP_API_URL}/api/cart/change/remove/${item.id}`, null, {
       headers: {
         "Authorization": localStorage.getItem("Authorization")
       }

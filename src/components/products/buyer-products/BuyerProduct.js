@@ -2,7 +2,6 @@ import React from 'react';
 import './BuyerProduct.css';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { addItemToCart } from '../../../actions/cartActions';
 import { Link } from 'react-router-dom';
 
 class BuyerProduct extends React.Component {
@@ -21,27 +20,7 @@ class BuyerProduct extends React.Component {
 
   setSingleProductPage = (e, id) => {
     e.preventDefault();
-    window.location = `/product/${id}`;
-  }
-
-  addToCart = (e, productId) => {
-    e.preventDefault();
-    this.setState({ isAdding: true });
-    if (!_.isEqual(localStorage.getItem("username"), null)) {
-      let item = {
-        quantity: 1,
-        user: {
-          id: localStorage.getItem('id')
-        },
-        products: [{
-          id: productId
-        }]
-      }
-      console.log('item', item);
-      this.props.addItemToCart(item);
-    } else {
-      window.location = "/login"
-    }
+    return <Link to={`/product/${id}`} />
   }
 
   render() {
@@ -71,14 +50,9 @@ class BuyerProduct extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isLoading: state.cartReducer.loading,
   getAllCartItems: state.cartReducer.getAllCartItems
 });
 
-const mapDispatchToProps = dispatch => ({
-  addItemToCart: item => {
-    dispatch(addItemToCart(item));
-  }
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuyerProduct);

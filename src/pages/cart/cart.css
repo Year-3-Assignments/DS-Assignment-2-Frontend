@@ -109,11 +109,12 @@
 @media (min-width: 1400px) {
   .cart-container {
     margin-top:70px;
+    max-width: 65%;
   }
   
   .cart-product-image {
     border-radius: 10px 0px 0px 10px;
-    width: 100%; 
+    width: 140px; 
     height: 140px;
     object-fit: cover;
   }
@@ -133,5 +134,13 @@
   
   .change-cart {
     margin-top: 35px;
+  }
+
+  .cart-summary-text {
+    font-size: 18px;
+  }
+
+  .checkout-btn {
+    border-radius: 10px;
   }
 }

@@ -3,13 +3,13 @@ import { ADD_ITEM_TO_CART, GET_CART_ITEMS, INCREMENT_ITEM_QUANTITY, DECREMENT_IT
 const initialState = {
   addProductToCart: '',
   getAllCartItems: '',
-  incrementQuantity: '',
-  decrementQuantity: '',
+  incrementItemQuantity: '',
+  decrementItemQuantity: '',
   removeItem: '',
   addProductToCartError: null,
   getAllCartItemsError: null,
-  incrementQuantityError: null,
-  decrementQuantityError: null,
+  incrementItemQuantityError: null,
+  decrementItemQuantityError: null,
   removeItemError: null
 };
 
@@ -41,6 +41,7 @@ function cartReducer(state = initialState, action) {
       return { ...state, loading: false, incrementItemQuantity };
     case `${DECREMENT_ITEM_QUANTITY}_FULFILLED`:
       decrementItemQuantity = action.payload.data;
+      console.log('data', decrementItemQuantity)
       return { ...state, loading: false, decrementItemQuantity };
     case `${DELETE_CART_ITEM}_FULFILLED`:
       removeItem = action.payload.data;
@@ -51,9 +52,9 @@ function cartReducer(state = initialState, action) {
     case `${GET_CART_ITEMS}_REJECTED`:
       return { ...state, loading: false, getAllCartItemsError: action.payload.data, state: initialState };
     case `${INCREMENT_ITEM_QUANTITY}_REJECTED`:
-      return { ...state, loading: false, incrementQuantityError: action.payload.data, state: initialState };
+      return { ...state, loading: false, incrementItemQuantityError: action.payload.data, state: initialState };
     case `${DECREMENT_ITEM_QUANTITY}_REJECTED`:
-      return { ...state, loading: false, decrementQuantityError: action.payload.data, state: initialState };
+      return { ...state, loading: false, decrementItemQuantityError: action.payload.data, state: initialState };
     case `${DELETE_CART_ITEM}_REJECTED`:
       return { ...state, loading: false, removeItemError: action.payload.data, state: initialState };
     

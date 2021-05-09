@@ -11,7 +11,8 @@ class Navbar extends React.Component {
     super(props);
     this.state = {
       userProfileImage: '',
-      cartItems: []
+      cartItems: [],
+      totalCartItems: ''
     }
   }
 
@@ -33,7 +34,16 @@ class Navbar extends React.Component {
     }
 
     if (this.props.getAllCartItems !== nextProps.getAllCartItems) {
-      this.setState({ cartItems: nextProps.getAllCartItems });
+      this.setState({ cartItems: nextProps.getAllCartItems }, () => {
+        let items = 0;
+        for (let i = 0; i < this.state.cartItems.length; i++) {
+          if (this.state.cartItems[i].status === 'PENDING') {
+            items = items + 1;
+          }
+        }
+        console.log(items)
+        this.setState({ totalCartItems: items });
+      });
     }
 
     if (this.props.addProductToCart !== nextProps.addProductToCart) {
@@ -93,7 +103,7 @@ class Navbar extends React.Component {
                     My Cart
                     &nbsp;&nbsp;
                     <span className="badge rounded-pill bg-dark cart-badge">
-                      {this.state.cartItems.length}
+                      {this.state.totalCartItems}
                     </span>
                   </Link>
                 </li> 
