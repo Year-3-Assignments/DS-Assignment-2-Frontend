@@ -37,10 +37,17 @@ class CartPage extends React.Component {
         {!this.state.isLoading ?
           <div className="row">
             <div className="col-md-8">
-            <h1 className="mt-5">My Cart</h1>
+            <h1 className="mt-4 mb-4"><i class="fas fa-shopping-cart"></i>&nbsp;<strong>My Cart</strong></h1>
             {this.state.items.map((item, index) => (
               <div key={index}>
-                <CartItem productName={item.product.productName} image={item.product.imageUrl} />
+                <CartItem 
+                  productName={item.product.productName} 
+                  image={item.product.imageUrl} 
+                  qunatity={item.quantity}
+                  totalPrice={item.totalPrice}
+                  itemCode={item.product.itemCode}
+                  cartId={item.cartId}
+                />
               </div>
             ))}
             </div>
