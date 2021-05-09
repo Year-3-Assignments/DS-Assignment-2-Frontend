@@ -13,7 +13,7 @@ export const GET_SHOP = "GET_SHOP";
 export const UPDATE_SHOP = "UPDATE_SHOP";
 export const DELETE_SHOP = "DELETE_SHOP";
 
-// Product management type
+// Product management types
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const SET_PRODUCT = "SET_PRODUCT";
@@ -21,4 +21,10 @@ export const GET_PRODUCT = "GET_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 
+// Cart management types
+export const ADD_ITEM_TO_CART = "ADD_PRODUCT_TO_CART";
+export const GET_CART_ITEMS = "GET_CART_ITEMS";
+export const INCREMENT_ITEM_QUANTITY = "INCREMENT_ITEM_QUANTITY";
+export const DECREMENT_ITEM_QUANTITY = "DECREMENT_ITEM_QUANTITY";
+export const DELETE_CART_ITEM = "DELETE_CART_ITEM";
 

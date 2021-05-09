@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { setSellerShop } from '../../actions/shopAcions';
 import { connect } from 'react-redux';
 import SellerProfile from './userProfile';
@@ -26,37 +25,45 @@ class UserProfilePage extends React.Component {
       });
     }
   }
+
+  redirectToLogin() {
+    window.location = "/signup";
+  }
   
   render() {
     let { isShopSelected } = this.state;
     return (
       <div className="container">
-        <div className="row"> 
-          <div className="col-md-2 col-sm-12">
-            <SellerProfile/>
+        {localStorage.getItem("username") !== null ?
+          <div className="row"> 
+            <div className="col-md-2 col-sm-12">
+              <SellerProfile/>
+            </div>
+            <div className="col-md-6">
+              {localStorage.getItem("roles") === 'ROLE_SELLER' ?
+                <div>
+                  {!isShopSelected ? 
+                    <div>
+                      <SellerShops/>
+                    </div>
+                  : 
+                    <div>
+                      <Shop />
+                    </div>
+                  }
+                </div> : null }
+              
+              {localStorage.getItem("roles") === 'ROLE_BUYER' ? 
+                <div></div> : null}
+            </div>
+            <div className="col-md-4">
+              {localStorage.getItem("roles") === 'ROLE_SELLER' ? 
+                <div>{isShopSelected ? <CreateProduct/> : <ShopCreate/>}</div> : null}
+            </div>
           </div>
-          <div className="col-md-6">
-            {localStorage.getItem("roles") === 'ROLE_SELLER' ?
-              <div>
-                {!isShopSelected ? 
-                  <div>
-                    <SellerShops/>
-                  </div>
-                : 
-                  <div>
-                    <Shop />
-                  </div>
-                }
-              </div> : null }
-            
-            {localStorage.getItem("roles") === 'ROLE_BUYER' ? 
-              <div></div> : null}
-          </div>
-          <div className="col-md-4">
-            {localStorage.getItem("roles") === 'ROLE_SELLER' ? 
-              <div>{isShopSelected ? <CreateProduct/> : <ShopCreate/>}</div> : null}
-          </div>
-        </div>
+        :
+          this.redirectToLogin()
+        }
       </div>
     );
   }
