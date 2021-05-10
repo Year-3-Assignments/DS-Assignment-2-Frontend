@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { GET_ALL_ORDERS, UPDATE_ORDER, DELETE_ORDER } from './index';
+import { GET_ALL_ORDERS, UPDATE_ORDER, DELETE_ORDER, SET_ORDER } from './index';
 
 export function getOrderDetails() {
     return {
         type: GET_ALL_ORDERS,
-        payload: axios.get(`${process.env.REACT_APP_API_URL}/order/${localStorage.getItem("id")}`, {
+        payload: axios.get(`${process.env.REACT_APP_API_URL}/api/order/${localStorage.getItem("id")}`, {
             headers: {
                 "Authorization": localStorage.getItem("Authorization")
             }
@@ -15,7 +15,7 @@ export function getOrderDetails() {
 export function updateOrderDetail(order) {
     return {
         type: UPDATE_ORDER,
-        payload: axios.put(`${process.env.REACT_APP_API_URL}/order/update/${order.id}`, order, {
+        payload: axios.put(`${process.env.REACT_APP_API_URL}/api/order/update/${order.id}`, order, {
             headers: {
                 "Authorization": localStorage.getItem("Authorization")
             }
@@ -26,10 +26,17 @@ export function updateOrderDetail(order) {
 export function deleteOrderDetail(order) {
     return {
         type: DELETE_ORDER,
-        payload: axios.delete(`${process.env.REACT_APP_API_URL}/order/delete/${order.id}`, {
+        payload: axios.delete(`${process.env.REACT_APP_API_URL}/api/order/delete/${order.id}`, {
             headers: {
                 "Authorization": localStorage.getItem("Authorization")
             }
         })
     };
 }
+
+export function setOrder(order) {
+    return {
+      type: SET_ORDER,
+      payload: order
+    };
+  }

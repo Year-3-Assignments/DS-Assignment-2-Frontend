@@ -1,10 +1,9 @@
 import { GET_ALL_ORDERS, UPDATE_ORDER, DELETE_ORDER } from '../actions/index';
 
 const initialState = {
-    orderCode: '',
-    createdDate: '',
-    status: '',
-    products: [],
+    getAllOrders: '',
+    updateOrder: '',
+    deleteOrder: '',
     getAllOrderError: null,
     getOrderError: null,
     updateOrderError: null,

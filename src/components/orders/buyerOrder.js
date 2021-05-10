@@ -1,6 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getOrderDetails } from '../../actions/orderActions';
+import { getOrderDetails, setOrder } from '../../actions/orderActions';
+import shop from '../../pages/shops/shop';
+import Order from './order';
+
+const initialState = {
+    orders: []
+}
 
 const $ = window.$;
 class BuyerOrder extends React.Component {
@@ -8,33 +14,50 @@ class BuyerOrder extends React.Component {
         super(props);
     }
 
+    state = initialState;
+
     componentDidMount() {
         this.props.getOrderDetails();
     }
 
+    componentWillReceiveProps = (nextProps) => {
+        if (this.props.getAllOrders !== nextProps.getAllOrders) {
+            this.setState({ orders: nextProps.getAllOrders }, () => {
+                console.log("Orders", this.state.orders);
+            })
+        }
+
+        if (this.props.deleteOrder !== nextProps.deleteOrder) {
+            this.setState({ orders: nextProps.getAllOrders }, () => {
+                console.log("Orders", this.state.orders);
+            })          
+        }
+
+    }
+
     render() {
+        let { orders } = this.state;
         return (
-            <div className="product-card">
-                <div className="card mb-3" >
-                    <div className="card-body">
-                        <h5 className="card-title product-cart-title"><strong>{this.props.products}</strong></h5>
-                        <p className="card-text product-cart-text p-0 m-0">Order Code : {this.props.orderCode}</p>
-                        <p className="card-text product-cart-text p-0 m-0">Created Date : {this.props.createdDate}</p>
-                        <p className="card-text product-cart-text p-0 m-0">Status : {this.props.status}.00</p>
-                    </div>
-                </div>
+            <div style={{marginTop: 20}}>
+                {orders.map((order, index) => 
+                    <Order id={order.id} orderCode={order.orderCode} createdDate={order.createdDate} status={order.status}/>
+                )}
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    getUser: state.orderReducer.getAllOrders
+    getAllOrders: state.orderReducer.getAllOrders,
+    deleteOrder: state.orderReducer.deleteOrder,
 });
 
 const mapDispatchToProps = dispatch => ({
     getOrderDetails: () => {
         dispatch(getOrderDetails());
+    },
+    setOrder: orders => {
+        dispatch(setOrder(orders));
     }
 });
 

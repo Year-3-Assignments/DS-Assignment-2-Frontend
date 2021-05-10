@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { setSellerShop, getSellerShops } from '../../actions/shopAcions';
-import SellerProduct from '../../components/products/sellerProduct';
+import SellerProduct from '../../components/products/seller-products/sellerProduct';
 
 const initialState = {
   shop: ''

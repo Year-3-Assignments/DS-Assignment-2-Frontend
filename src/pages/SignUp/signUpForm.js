@@ -1,12 +1,12 @@
 import React from 'react';
 import firebase from '../../firebase.config';
-import Progress from '../../components/Progress/Progress';
+import Progress from '../../components/progress/progress';
 import { NotificationManager } from 'react-notifications';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { createUserAccount } from '../../actions/userActions';
 
-const initialState = {
+const initialState = { 
   firstName: '',
   lastName: '',
   email: '',
@@ -28,7 +28,7 @@ const initialState = {
 
 let formData = {};
 
-class SignUp extends React.Component {
+class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
@@ -57,10 +57,8 @@ class SignUp extends React.Component {
 
   onUserRoleChange(e) {
     if (e.target.checked) {
-      this.state.roles.push(e.target.value);
-    } else {
-      _.remove(this.state.roles, 'seller');
-    }
+      this.state.roles[0] = e.target.value
+    } 
   }
 
   setImage = (e) => {
@@ -145,6 +143,7 @@ class SignUp extends React.Component {
       password1: this.state.password_1 && this.state.password_1.trim().length > 0 ? this.state.password_1 : null,
       password2: this.state.password_2 && this.state.password_2.trim().length > 0 ? this.state.password_2 : null,
       image: this.state.imageUrl && this.state.imageUrl.trim().length > 0 ? this.state.imageUrl : null,
+      type: this.state.roles && this.state.roles.length > 0 ? this.state.roles : null
     };
 
     formData = Object.assign({}, data);
@@ -153,7 +152,7 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center mt-5">
         <div className="border signup-form"  style={{width: '650px'}}>
           <form className="m-4">
             <h5>Create New Account</h5>
@@ -230,11 +229,25 @@ class SignUp extends React.Component {
               </div>
             </div>
 
+            <div className="form-check">
+              <input className="form-check-input" type="radio" name="account-type" id="seller-account" value="seller" onChange={e => this.onUserRoleChange(e)} />
+              <label className="form-check-label" htmlFor="seller-account">
+                <strong>SELLER ACCOUNT</strong>
+              </label>
+            </div>
+            <div className="form-check">
+              <input className="form-check-input" type="radio" name="account-type" id="buyer-account" value="buyer" onChange={e => this.onUserRoleChange(e)} />
+              <label className="form-check-label" htmlFor="buyer-account">
+                <strong>BUYER ACCOUNT</strong>
+              </label>
+            </div>
+            {formData.type===null && this.state.formNotValid ? <span className="form__help_danger">Account type is required</span> : null}
+
             <div className="mb-3">
               <label htmlFor="profile-image" className="form-label">Profile Image</label>
               <div className="input-group">
                 <input type="file" className="form-control" id="profile-image" onChange={e => this.setImage(e)} />
-                <button className="btn btn-outline-primary btn-sm" type="button" onClick={this.uploadImage}>UPLOAD</button>
+                <button className="btn btn-dark btn-sm" type="button" onClick={this.uploadImage}>UPLOAD</button>
               </div>
               {formData.image===null && this.state.formNotValid ? <span className="form__help_danger">Profile image is required</span> : null}
             </div>
@@ -243,27 +256,8 @@ class SignUp extends React.Component {
               <Progress percentage={this.state.uploadPercentage} />
             </div>
 
-            <div className="row mb-3">
-              <div className="col">
-                <div className="form-check">
-                  <input className="form-check-input" type="checkbox" id="1" value="seller" onChange={e => this.onUserRoleChange(e)} />
-                  <label className="form-check-label">
-                    SELLER ACCOUNT
-                  </label>
-                </div>
-              </div>
-              <div className="col">
-                <div className="form-check">
-                  <input className="form-check-input" type="checkbox" id="2" value="buyer" onChange={e => this.onUserRoleChange(e)}/>
-                  <label className="form-check-label">
-                    SELLER ACCOUNT
-                  </label>
-                </div>
-              </div>
-            </div>
-
             <div className="float-end mb-4 mt-3">
-              <button type="button" className="btn btn-outline-primary btn-pill" onClick={this.onSubmit}>CREATE MY ACCOUNT</button>
+              <button type="button" className="btn btn-dark btn-pill btn-sm" onClick={this.onSubmit}>CREATE MY ACCOUNT</button>
             </div>
           </form>
         </div>
@@ -282,4 +276,4 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
