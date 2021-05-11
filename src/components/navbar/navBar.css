@@ -10,5 +10,19 @@
     font-size: 14px;
 }
 
+.cart-badge {
+    font-size: 18px;
+    height: 25px;
+    width: 25px;
+}
+
+.logout-modal-title {
+    font-size: 18px;
+}
+
+.logout-modal-body{
+    font-size: 15px;
+}
+
 .navbar-nav > li > a {padding-top:0px !important; padding-bottom:0px !important;}
 .navbar {min-height:25px !important}

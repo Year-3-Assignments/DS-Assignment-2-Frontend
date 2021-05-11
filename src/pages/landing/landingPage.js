@@ -16,7 +16,7 @@ class LandingPage extends React.Component {
             <h4 className="text-muted mb-4">Where you can buy and sell anything that you want...</h4>
             <button className="btn btn-dark btn-pill btn-lg landing-btn" onClick={e => window.location = "/signup"}>
               SIGN UP TODAY&nbsp;&nbsp;
-              <i class="fas fa-hand-point-right fa-lg"></i>
+              <i className="fas fa-hand-point-right fa-lg"></i>
             </button>
           </div>
         </div>

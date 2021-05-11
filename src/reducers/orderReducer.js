@@ -1,7 +1,8 @@
-import { GET_ALL_ORDERS, UPDATE_ORDER, DELETE_ORDER } from '../actions/index';
+import { GET_ALL_ORDERS, UPDATE_ORDER, DELETE_ORDER, GET_ORDER } from '../actions/index';
 
 const initialState = {
     getAllOrders: '',
+    setOrder: '',
     updateOrder: '',
     deleteOrder: '',
     getAllOrderError: null,
@@ -11,14 +12,17 @@ const initialState = {
 }
 
 function orderReducer(state = initialState, action) {
-    let getAllOrders, updateOrder, deleteOrder;
+    let getAllOrders, updateOrder, setOrder, deleteOrder;
 
     switch (action.type) {
         case `${GET_ALL_ORDERS}_PENDING`:
         case `${UPDATE_ORDER}_PENDING`:
         case `${DELETE_ORDER}_PENDING`:
+        case `${GET_ORDER}_PENDING`:
+
             return { ...state, loading: true,
                 getAllOrderError: null,
+                setOrderError: null,
                 getOrderError: null,
                 updateOrderError: null,
                 deleteOrderError: null
@@ -35,14 +39,21 @@ function orderReducer(state = initialState, action) {
         case `${DELETE_ORDER}_FULFILLED`:
             deleteOrder = action.payload.data;
             return { ...state, loading: false, deleteOrder };
-
+        
+        case `${GET_ORDER}`:
+            setOrder = action.payload;
+            console.log(setOrder);
+            return { ...state, loading: false, setOrder };
+          
         case `${GET_ALL_ORDERS}_REJECTED`:
             return { ...state, loading: false, getAllProductsError: action.payload.data, state: initialState };
         case `${UPDATE_ORDER}_REJECTED`:
             return { ...state, loading: false, updateProductError: action.payload.data, state: initialState };
         case `${DELETE_ORDER}_REJECTED`:
             return { ...state, loading: false, deleteProductError: action.payload.data, state: initialState };
-
+        case `${GET_ORDER}_REJECTED`:
+            return { ...state, loading: false, setOrderError: action.payload.data, state: initialState };
+    
         default:
             return state;
     }

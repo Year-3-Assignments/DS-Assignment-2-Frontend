@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import { setOrder , deleteOrderDetail } from '../../actions/orderActions';
 import { connect } from 'react-redux';
+import _ from 'lodash';
+
+const initialState = {
+  order: ''
+}
 
 const $ = window.$;
 class order extends Component {
@@ -8,71 +13,71 @@ class order extends Component {
         super(props);
     }
 
-    setDeleteOrder = (e) => {
-        let order = this.props;
-        this.props.setOrder(order);
+    state = initialState;
+
+    componentDidMount() {
+      this.setState({ order: this.props.order });
     }
 
-    deleteProduct = (e) => {
-        let order = {
-          id: this.props.id
-        }
-        this.props.deleteOrderDetail(order);
-        $("#delete_item").modal("toggle");
+    componentWillReceiveProps = (nextProps) => {
+  
+      if (this.props.order !== nextProps.setOrder) {
+        this.setState({ order:  _.find(nextProps.setOrder, {id: this.state.order.id })})
+      }
+
     }
+
+
+  showOrders = (e) => {
+    this.props.setOrder('')
+  }
 
     render() {
+      let {order} = this.state;
         return (
+
+          <div className="mt-4">
+          <div className="d-flex justify-content-end" onClick={this.showOrders}>
+            <button className="btn btn-light btn-pill btn-sm mb-2">
+              <i className="fas fa-arrow-left"></i>&nbsp;&nbsp;
+              <span>Go Back</span>
+            </button>
+          </div>
             <div>
-            <div className="product-card">
-                <div className="card mb-3" >
-                <div className="img-wrapper">
-                    <div className="img-overlay">
-                    <button className="rounded-circle btn btn-dark btn-sm" style={{height: '34px', width: '35px', marginTop: 10}} data-bs-toggle="modal" data-bs-target="#delete_item" onClick={this.setDeleteOrder}><i className="fas fa-trash"></i></button>
+              <div>              
+                <h5 className="mt-3">Order Details</h5>
+                <div className="row">
+
+                  <p>Order Code: {order.orderCode}</p>
+                  <p>Status: {order.status}</p>
+                  <p>Created Date: {order.createdDate}</p>
+                  <p>Products Purchased:</p>
+
+                  {order.products && order.products.map((product, index) => (
+                    <div key={index} className="mt-2 col-md-4">
+                      <p>Id: <b>{product.id}</b><br/>
+                      Name: <b>{product.productName}</b><br/>
+                      Item Code: <b>{product.itemCode}</b><br/>
+                      Quantity: <b>{product.quantity}</b><br/>
+                      Unit Price: <b>{product.unitPrice}</b></p>
                     </div>
-                    </div>
-                    <div className="card-body">
-                        <p className="card-text product-cart-text p-0 m-0">Order Code : {this.props.orderCode}</p>
-                        <p className="card-text product-cart-text p-0 m-0">Created Date : {this.props.createdDate}</p>
-                        <p className="card-text product-cart-text p-0 m-0">Status : {this.props.status}</p>
-                    </div>
-                </div>
-            </div>
-            <div className="modal fade mt-5" id="delete_item" tabIndex="-1" role="dialog" data-backdrop="static">
-          <div className="modal-dialog modal-md" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Confirm Delete</h5>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              
-              <div className="modal-body">
-                Do you want to delete?
-              </div>
-              
-              <div className="modal-footer d-flex justify-content-center">
-                <div>
-                  <button type="button" className="btn btn-light btn-pill mx-2" data-bs-dismiss="modal">No</button>
-                  <button type="submit" className="btn btn-primary btn-pill" onClick={e => this.deleteProduct(e)}>Yes</button>
+                  ))}
+
                 </div>
               </div>
             </div>
           </div>
-        </div>
-            </div>
-        )
+       
+
+     )
     }
 }
 
 const mapStateToProps = state => ({
-    order: state.orderReducer.setProduct,
-    deleteOrder: state.orderReducer.deleteOrder,
+    order: state.orderReducer.setOrder,
   });
   
   const mapDispatchToProps = dispatch => ({
-    deleteOrderDetail: order => {
-      dispatch(deleteOrderDetail(order));
-    },
     setOrder: order => {
         dispatch(setOrder(order));
     }

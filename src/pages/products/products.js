@@ -16,6 +16,7 @@ class Products extends React.Component {
               price={item.unitPrice} 
               productImage={item.imageUrl} 
               productId={item.id}
+              quantity={item.quantity}
             />
           </div>
         ))}

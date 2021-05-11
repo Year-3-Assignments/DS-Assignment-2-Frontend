@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ALL_ORDERS, UPDATE_ORDER, DELETE_ORDER, SET_ORDER } from './index';
+import { GET_ALL_ORDERS, UPDATE_ORDER, DELETE_ORDER, GET_ORDER } from './index';
 
 export function getOrderDetails() {
     return {
@@ -36,7 +36,7 @@ export function deleteOrderDetail(order) {
 
 export function setOrder(order) {
     return {
-      type: SET_ORDER,
+      type: GET_ORDER,
       payload: order
     };
   }

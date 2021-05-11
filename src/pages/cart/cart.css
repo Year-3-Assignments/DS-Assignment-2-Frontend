@@ -1,0 +1,146 @@
+@media (min-width: 300px) {
+  .cart-container {
+    margin-top: 70px;
+  }
+  
+  .cart-product-image {
+    border-radius: 9px;
+    width: 100%; 
+    height: 230px;
+    object-fit: cover;
+  }
+
+  .cart-content {
+    padding-left: 20px;
+  }
+  
+  .cart {
+    height: 490px;
+    margin-top: 70px;
+  }
+  
+  .cart-quantity {
+    font-size: 70px;
+  }
+  
+  .cart-delete{
+    border-radius: 0px 0px 10px 10px;
+    width: fit-content;
+  }
+  
+  .change-cart {
+    margin-top: 5px;
+  }
+}
+
+@media (min-width: 406px) {
+  .cart-container {
+    margin-top: 70px;
+  }
+  
+  .cart-product-image {
+    border-radius: 9px;
+    width: 100%; 
+    height: 230px;
+    object-fit: cover;
+  }
+
+  .cart-content {
+    padding-left: 20px;
+  }
+  
+  .cart {
+    height: 490px;
+    margin-top: 70px;
+  }
+  
+  .cart-quantity {
+    font-size: 70px;
+  }
+  
+  .cart-delete{
+    border-radius: 0px 0px 10px 10px;
+    width: fit-content;
+  }
+  
+  .change-cart {
+    margin-top: 5px;
+  }
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+  .cart-container {
+    margin-top:70px;
+  }
+  
+  .cart-product-image {
+    border-radius: 10px 0px 0px 10px;
+    width: 100%; 
+    height: 140px;
+    object-fit: cover;
+  }
+  
+  .cart {
+    height: 140px;
+    margin-top: 20px;
+  }
+  
+  .cart-quantity {
+    font-size: 70px;
+  }
+  
+  .cart-delete{
+    border-radius: 0px 10px 10px 0px;
+  }
+  
+  .change-cart {
+    margin-top: 35px;
+  }
+}
+
+@media (min-width: 1200px) {
+
+}
+
+@media (min-width: 1400px) {
+  .cart-container {
+    margin-top:70px;
+    max-width: 65%;
+  }
+  
+  .cart-product-image {
+    border-radius: 10px 0px 0px 10px;
+    width: 140px; 
+    height: 140px;
+    object-fit: cover;
+  }
+  
+  .cart {
+    height: 140px;
+    margin-top: 20px;
+  }
+  
+  .cart-quantity {
+    font-size: 70px;
+  }
+  
+  .cart-delete{
+    border-radius: 0px 10px 10px 0px;
+  }
+  
+  .change-cart {
+    margin-top: 35px;
+  }
+
+  .cart-summary-text {
+    font-size: 18px;
+  }
+
+  .checkout-btn {
+    border-radius: 10px;
+  }
+}
