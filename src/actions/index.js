@@ -21,6 +21,12 @@ export const GET_PRODUCT = "GET_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 
+// Order management types
+export const GET_ALL_ORDERS = "GET_ALL_ORDERS";
+export const UPDATE_ORDER = "UPDATE_ORDER";
+export const DELETE_ORDER = "DELETE_ORDER";
+export const GET_ORDER = "GET_ORDER";
+
 // Cart management types
 export const ADD_ITEM_TO_CART = "ADD_PRODUCT_TO_CART";
 export const GET_CART_ITEMS = "GET_CART_ITEMS";
