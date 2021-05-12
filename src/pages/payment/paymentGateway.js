@@ -1,20 +1,36 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Stripe from 'react-stripe-checkout';
 import axios from 'axios';
+import { setDeliveryItems } from '../../actions/deliveryActions';
 import NotificationManager from '../../components/notifications/notificationCreator';
+import { Link } from 'react-router-dom';
+import DeliveryPage from '../delivery/delivery-page';
 
+const $ = window.$;
 class Payment extends React.Component {
   constructor(props) {
     super(props);
     this.handleToken = this.handleToken.bind(this);
     this.state = {
       isPaymentSuccess: false,
-      isPaymentClicked: false
+      isPaymentClicked: false,
+      isDeliveryOpen: false
     }
+  }
+
+  componentDidMount() {
+    console.log('items', this.props.items)
+  }
+
+  componentWillUnmount() {
+    this.props.setDeliveryItems('')
   }
 
   async handleToken(token) {
     this.setState({ isPaymentClicked: true })
+    console.log(this.props.items)
+    this.props.setDeliveryItems(this.props.items)
     await axios.post(`https://ds-shopping-api.azurewebsites.net/api/payment/create`, {}, {
       headers: {
         Authorization: localStorage.getItem('Authorization'),
@@ -24,7 +40,7 @@ class Payment extends React.Component {
       }
     }).then(() => {
       this.setState({ isPaymentSuccess: true });
-      window.location = "/"
+      $('#select-delivery').modal('show');
     })
   }
 
@@ -33,13 +49,23 @@ class Payment extends React.Component {
       <div className="d-flex justify-content-center" style={{marginTop: '20px'}}>
         {this.state.isPaymentSuccess ? <NotificationManager type={'success'} message={'Payment successful'} isOpen={true} /> : null}
         {this.state.isPaymentClicked ? <NotificationManager type={'warning'} message={'Processing'} isOpen={true} /> : null}
+        {this.state.isDeliveryOpen ? <Link to="/delivery/service" /> : null}
         <Stripe 
           stripeKey='pk_test_51IlJXpELrMk2voSN9qxbdvq2WSQ5vpE4iJTPWpxXc9LUn8sOnrduGZ8I9OqOepiIrV1bvjXviuKvduF1QphpoN5w00IdrPnGeu'
           token={this.handleToken}
         />
+        <DeliveryPage/>
       </div>
     );
   }
 }
 
-export default Payment;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+  setDeliveryItems: items => {
+    dispatch(setDeliveryItems(items));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Payment);

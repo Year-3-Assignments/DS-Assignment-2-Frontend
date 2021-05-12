@@ -18,42 +18,11 @@ class Navbar extends React.Component {
 
   componentDidMount() {
     this.props.getUserAccount();
-
-    if (localStorage.getItem('id') !== null && localStorage.getItem('roles') !== null) {
-      console.log('items', this.state.cartItems.length)
-      let user = {
-        id: localStorage.getItem('id')
-      };
-      this.props.getCartItems(user);
-    }
   }
 
   componentWillReceiveProps = (nextProps) => {
     if (this.props.getUser !== nextProps.getUser) {
       this.setState({ userProfileImage: nextProps.getUser.imageUrl });
-    }
-
-    if (this.props.getAllCartItems !== nextProps.getAllCartItems) {
-      this.setState({ cartItems: nextProps.getAllCartItems }, () => {
-        let items = 0;
-        for (let i = 0; i < this.state.cartItems.length; i++) {
-          if (this.state.cartItems[i].status === 'PENDING') {
-            items = items + 1;
-          }
-        }
-        console.log(items)
-        this.setState({ totalCartItems: items });
-      });
-    }
-
-    if (this.props.addProductToCart !== nextProps.addProductToCart) {
-      console.log('chage')
-      if (localStorage.getItem('id') !== null && localStorage.getItem('roles') !== null) {
-        let user = {
-          id: localStorage.getItem('id')
-        };
-        this.props.getCartItems(user);
-      }
     }
   }
 
@@ -101,10 +70,17 @@ class Navbar extends React.Component {
                     <i className="fas fa-shopping-cart"></i>
                     &nbsp;
                     My Cart
-                    &nbsp;&nbsp;
-                    <span className="badge rounded-pill bg-dark cart-badge">
-                      {this.state.totalCartItems}
-                    </span>
+                  </Link>
+                </li> 
+              : 
+                null
+              }
+              {localStorage.getItem("roles") === "ROLE_BUYER" ? 
+                <li className="nav-item">
+                  <Link className="nav-link" to="/delivery">
+                    <i className="fas fa-truck"></i>
+                    &nbsp;
+                    Deliveries
                   </Link>
                 </li> 
               : 
@@ -152,17 +128,12 @@ class Navbar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  addProductToCart: state.cartReducer.addProductToCart,
   getUser: state.userReducer.getUser,
-  getAllCartItems: state.cartReducer.getAllCartItems
 });
 
 const mapDispatchToProps = dispatch => ({
   getUserAccount: () => {
     dispatch(getUserAccount());
-  },
-  getCartItems: user => {
-    dispatch(getCartItems(user));
   }
 });
 

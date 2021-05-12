@@ -36,7 +36,7 @@ export function deleteOrderDetail(order) {
 
 export function setOrder(order) {
     return {
-      type: GET_ORDER,
-      payload: order
+        type: GET_ORDER,
+        payload: order
     };
-  }
+}
