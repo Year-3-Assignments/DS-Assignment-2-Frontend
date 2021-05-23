@@ -1,11 +1,11 @@
 import React from 'react';
-import Progress from '../progress/Progress';
-import firebase from '../../firebase.config';
+import Progress from '../../progress/progress';
+import firebase from '../../../firebase.config';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { NotificationManager } from 'react-notifications';
-import { createNewProduct } from '../../actions/productActions';
-import { getSellerShops } from '../../actions/shopAcions';
+import { createNewProduct } from '../../../actions/productActions';
+import { getSellerShops } from '../../../actions/shopAcions';
 
 const initialState = {
   productName: '',
@@ -15,7 +15,8 @@ const initialState = {
   profileImage: null,
   imageUrl: '',
   uploadPercentage: 0,
-  formNotValid: false
+  formNotValid: false,
+  isProductCreating: false
 };
 
 let formData = {};
@@ -30,6 +31,12 @@ class CreateProduct extends React.Component {
   }
 
   state = initialState;
+
+  componentWillReceiveProps = (nextProps) => {
+    if (this.props.getShops !== nextProps.getShops) {
+      this.setState({ isProductCreating: nextProps.createProductLoading });
+    }
+  }
   
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -102,9 +109,19 @@ class CreateProduct extends React.Component {
             id: this.props.shop.id
           }
         }
+        this.setState({ isProductCreating: true });
         console.log('product', product)
         this.props.createNewProduct(product);
-        this.state = initialState;
+        this.setState({
+          productName: '',
+          unitPrice: '',
+          description: '',
+          quantity: '',
+          profileImage: null,
+          imageUrl: '',
+          uploadPercentage: 0,
+          formNotValid: false
+        });
         NotificationManager.success('User account successfully created', 'Success')
       } else {
         this.setState({ formNotValid: true }, () => {
@@ -161,7 +178,14 @@ class CreateProduct extends React.Component {
             </div>
 
             <div className="d-flex justify-content-end">
-              <a href="#" className="btn btn-info btn-sm btn-pill" onClick={this.onSubmit}>ADD PRODUCT</a>
+              {!this.state.isProductCreating ? 
+                <a href="#" className="btn btn-dark btn-sm btn-pill" onClick={this.onSubmit}>ADD PRODUCT</a>
+              :
+                <button className="btn btn-dark btn-pill btn-sm" type="button">
+                  <span className="spinner-border spinner-border-sm pt-0" role="status" aria-hidden="true"></span>
+                  <span className="ml-2">ADDING...</span>
+                </button>
+              }
             </div>
           </form>
         </div>
@@ -173,6 +197,8 @@ class CreateProduct extends React.Component {
 const mapStateToProps = state => ({
   shop: state.shopReducer.setSellerShop,
   newProduct: state.productReducer.createProduct,
+  createProductLoading: state.productReducer.loading,
+  getShops: state.shopReducer.getShops
 });
 
 const mapDispatchToProps = dispatch => ({

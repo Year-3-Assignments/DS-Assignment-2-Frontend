@@ -1,19 +1,27 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Navbar from '../components/navbar/Navbar';
-import SellerProfilePage from '../pages/user-profile/userPrfilePage';
-import SignUp from '../pages/signup/signUpPage';
+import Navbar from '../components/navbar/navBar';
+import ProductsPage from '../pages/products/ProductsPage';
+import UserProfilePage from '../pages/user-profile/userPrfilePage';
+import SignUpPage from '../pages/SignUp/signUpPage';
+import SingleProductPage from '../pages/products/singleProductPage';
+import LoginPage from '../pages/login/loginPage';
+import cartPage from '../pages/cart/cartPage';
 
 export default class PageRoutes extends React.Component {
   render() {
     return (
       <div>
-        <Navbar/>
         <Router>
-          <section className="mt-5">
+        <Navbar/>
+          <section className="" style={{marginTop: '50px'}}>
             <Switch>
-              <Route path="/signup" component={SignUp} exact />
-              <Route path="/me" component={SellerProfilePage} exact />
+              <Route path="/" component={ProductsPage} exact />
+              <Route path="/cart" component={cartPage} exact />
+              <Route path="/signup" component={SignUpPage} exact />
+              <Route path="/login" component={LoginPage} exact />
+              <Route path="/me" component={UserProfilePage} exact />
+              <Route path="/product/:id" component={SingleProductPage} exact />
             </Switch>
           </section>
         </Router>
