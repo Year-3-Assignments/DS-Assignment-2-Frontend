@@ -29,9 +29,7 @@ class Payment extends React.Component {
 
   async handleToken(token) {
     this.setState({ isPaymentClicked: true })
-    console.log(this.props.items)
-    this.props.setDeliveryItems(this.props.items)
-    await axios.post(`https://ds-shopping-api.azurewebsites.net/api/payment/create`, {}, {
+    await axios.post(`${process.env.REACT_APP_API_URL}/api/payment/create`, {}, {
       headers: {
         Authorization: localStorage.getItem('Authorization'),
         token: token.id,
