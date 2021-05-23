@@ -14,6 +14,7 @@ class CartPage extends React.Component {
     this.makePayment = this.makePayment.bind(this);
     this.state = {
       items: [],
+      newItems: [],
       isLoading: true,
       totalItems: 0,
       totalPrice: 0,
@@ -39,6 +40,7 @@ class CartPage extends React.Component {
         let pendingItems = 0;
         for (let i = 0; i < this.state.items.length; i++) {
           if (this.state.items[i].status === 'PENDING') {
+            this.state.newItems.push(this.state.items[i])
             items += this.state.items[i].quantity;
             price += this.state.items[i].totalPrice;
             pendingItems = pendingItems + 1;
@@ -122,7 +124,7 @@ class CartPage extends React.Component {
                     }
                   </div>
                 </div>
-                {this.state.isProceedClick ? <Payment amount={this.state.totalPrice} /> : null}
+                {this.state.isProceedClick ? <Payment amount={this.state.totalPrice} items={this.state.newItems} /> : null}
               </div>
             :
               null
